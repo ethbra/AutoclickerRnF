@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "autoclicker-rinf",
+  "version": "${version}",
+  "name": "Autoclicker Rinf",
+  "description": "Autoclicker for farms",
+  "authors": [
+    "RinF_UwU"
+  ],
+  "contact": {
+    "website": "https://modrinth.com/user/RinF-UwU | https://www.curseforge.com/members/rinf_uwu/projects"
+  },
+  "license": "MIT",
+  "icon": "assets/autoclicker-rinf/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "rinf.autoclickerrinf.client.AutoclickerRinfClient"
+    ],
+    "main": [
+      "rinf.autoclickerrinf.AutoclickerRinf"
+    ]
+  },
+  "mixins": [
+    "autoclicker-rinf.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

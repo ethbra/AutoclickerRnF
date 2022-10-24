@@ -1,0 +1,9 @@
+{
+  "category.rinf-mods.general": "RinF mods settings",
+  "key.autoclicker-rinf.openacfm": "Открыть настройки автокликера",
+  "key.autoclicker-rinf.toggleacf": "Переключатель автокликера",
+  "text.autoclicker-rinf.clickdelay": "Задержка в тиках: %d",
+  "label.autoclicker-rinf.settingmenul": "Меню настроек",
+  "text.autoclicker-rinf.targetentitymode": "Режим атаки мобов",
+  "text.autoclicker-rinf.attackcooldowncode": "Режим атаки с перезарядкой"
+}

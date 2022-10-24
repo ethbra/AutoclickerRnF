@@ -1,0 +1,9 @@
+{
+  "category.rinf-mods.general": "RinF mods settings",
+  "key.autoclicker-rinf.openacfm": "Open autoclicker menu",
+  "key.autoclicker-rinf.toggleacf": "Autoclicker switch",
+  "text.autoclicker-rinf.clickdelay": "Delay in ticks: %d",
+  "label.autoclicker-rinf.settingmenul": "Settings menu",
+  "text.autoclicker-rinf.targetentitymode": "Target entity mode",
+  "text.autoclicker-rinf.attackcooldowncode": "Cooldown attack mode"
+}
