@@ -1,9 +1,12 @@
 {
   "category.rinf-mods.general": "RinF mods settings",
+  "autoclicker-rinf.leftmousebutton": "Ліва кнопка миші",
+  "autoclicker-rinf.rightmousebutton": "Права кнопка миші",
   "key.autoclicker-rinf.openacfm": "Відкрити налаштування автоклікера",
   "key.autoclicker-rinf.toggleacf": "Перемикач автоклікера",
-  "text.autoclicker-rinf.clickdelay": "Затримка в тіках: %d",
-  "label.autoclicker-rinf.settingmenul": "Меню налаштувань",
-  "text.autoclicker-rinf.targetentitymode": "Режим атаки мобів",
-  "text.autoclicker-rinf.attackcooldowncode": "Режим атаки з перезарядженням"
+  "autoclicker-rinf.clickdelay": "Затримка в тіках: %d",
+  "autoclicker-rinf.settingmenul": "Меню налаштувань",
+  "autoclicker-rinf.targetentitymode": "Режим атаки мобів: %d",
+  "autoclicker-rinf.attackcooldownmode": "Режим атаки з перезарядженням: %d",
+  "autoclicker-rinf.holdmode": "Режим утримання: %d"
 }

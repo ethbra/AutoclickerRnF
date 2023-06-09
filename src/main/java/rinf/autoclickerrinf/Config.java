@@ -13,23 +13,38 @@ public class Config {
     public static final Path CONFIG_DIRECTORY = Paths.get(MinecraftClient.getInstance().runDirectory.getPath() + "/config");
     public static final Path CONFIG_FILE = Paths.get(CONFIG_DIRECTORY + "/autoclicker-rinf.json");
     public static Properties properties = new Properties();
-    private boolean clickerActive;
-    private int clickDelayInt;
-    private boolean targetEntityMode;
-    private boolean attackCooldownMode;
+    private boolean lClickerActive;
+    private boolean rClickerActive;
+    private int lClickDelayInt;
+    private int rClickDelayInt;
+    private boolean lHoldMode;
+    private boolean rHoldMode;
+    private boolean lTargetEntityMode;
+    private boolean rTargetEntityMode;
+    private boolean lCooldownAttackMode;
 
     public Config() {
     }
-    public void set(boolean clickerActive, int clickDelayInt, boolean targetEntityMode, boolean attackCooldownMode) {
-        this.clickerActive = clickerActive;
-        this.clickDelayInt = clickDelayInt;
-        this.targetEntityMode = targetEntityMode;
-        this.attackCooldownMode = attackCooldownMode;
+    public void set(boolean lClickerActive, boolean rClickerActive, int lClickDelayInt, int rClickDelayInt, boolean lHoldMode, boolean rHoldMode, boolean lTargetEntityMode, boolean rTargetEntityMode, boolean lCooldownAttackMode) {
+        this.lClickerActive = lClickerActive;
+        this.rClickerActive = rClickerActive;
+        this.lClickDelayInt = lClickDelayInt;
+        this.rClickDelayInt = rClickDelayInt;
+        this.lHoldMode = lHoldMode;
+        this.rHoldMode = rHoldMode;
+        this.lTargetEntityMode = lTargetEntityMode;
+        this.rTargetEntityMode = rTargetEntityMode;
+        this.lCooldownAttackMode = lCooldownAttackMode;
         try (FileWriter writer = new FileWriter(CONFIG_FILE.toFile())) {
-            writer.write("clickerActive = " + this.clickerActive + "\n");
-            writer.write("clickDelayInt = " + this.clickDelayInt + "\n");
-            writer.write("targetEntityMode = " + this.targetEntityMode + "\n");
-            writer.write("attackCooldownMode = " + this.attackCooldownMode + "\n");
+            writer.write("lClickerActive = " + this.lClickerActive + "\n");
+            writer.write("rClickerActive = " + this.rClickerActive + "\n");
+            writer.write("lClickDelayInt = " + this.lClickDelayInt + "\n");
+            writer.write("rClickDelayInt = " + this.rClickDelayInt + "\n");
+            writer.write("lHoldMode = " + this.lHoldMode + "\n");
+            writer.write("rHoldMode = " + this.rHoldMode + "\n");
+            writer.write("lTargetEntityMode = " + this.lTargetEntityMode + "\n");
+            writer.write("rTargetEntityMode = " + this.rTargetEntityMode + "\n");
+            writer.write("lAttackCooldownMode = " + this.lCooldownAttackMode + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,17 +53,27 @@ public class Config {
         if (!Files.exists(CONFIG_FILE)) create();
         try {
             properties.load(new FileInputStream(CONFIG_FILE.toFile()));
-            this.clickerActive = Boolean.parseBoolean(properties.getProperty("clickerActive"));
-            this.clickDelayInt = Integer.parseInt(properties.getProperty("clickDelayInt"));
-            this.targetEntityMode = Boolean.parseBoolean(properties.getProperty("targetEntityMode"));
-            this.attackCooldownMode = Boolean.parseBoolean(properties.getProperty("attackCooldownMode"));
+            this.lClickerActive = Boolean.parseBoolean(properties.getProperty("lClickerActive"));
+            this.rClickerActive = Boolean.parseBoolean(properties.getProperty("rClickerActive"));
+            this.lClickDelayInt = Integer.parseInt(properties.getProperty("lClickDelayInt"));
+            this.rClickDelayInt = Integer.parseInt(properties.getProperty("rClickDelayInt"));
+            this.lHoldMode = Boolean.parseBoolean(properties.getProperty("lHoldMode"));
+            this.rHoldMode = Boolean.parseBoolean(properties.getProperty("rHoldMode"));
+            this.lTargetEntityMode = Boolean.parseBoolean(properties.getProperty("lTargetEntityMode"));
+            this.rTargetEntityMode = Boolean.parseBoolean(properties.getProperty("rTargetEntityMode"));
+            this.lCooldownAttackMode = Boolean.parseBoolean(properties.getProperty("lAttackCooldownMode"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ClickController.clickerActive = this.clickerActive;
-        ClickController.clickDelayInt = this.clickDelayInt;
-        ClickController.targetEntityMode = this.targetEntityMode;
-        ClickController.attackCooldownMode = this.attackCooldownMode;
+        ClickController.lClickerActive = this.lClickerActive;
+        ClickController.rClickerActive = this.rClickerActive;
+        ClickController.lClickDelayInt = this.lClickDelayInt;
+        ClickController.rClickDelayInt = this.rClickDelayInt;
+        ClickController.lHoldMode = this.lHoldMode;
+        ClickController.rHoldMode = this.rHoldMode;
+        ClickController.lTargetEntityMode = this.lTargetEntityMode;
+        ClickController.rTargetEntityMode = this.rTargetEntityMode;
+        ClickController.lCooldownAttackMode = this.lCooldownAttackMode;
     }
     private void create() {
         try {
@@ -57,6 +82,6 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        set(false, 0, false, false);
+        set(false, false, 0, 0, false, false, false, false, false);
     }
 }
