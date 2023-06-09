@@ -2,10 +2,12 @@ package rinf.autoclickerrinf.client.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.text.Text;
+import rinf.autoclickerrinf.client.AutoclickerRinfClient;
 import rinf.autoclickerrinf.client.ClickController;
 
 @Environment(EnvType.CLIENT)
@@ -31,7 +33,7 @@ public class ACFMenuScreen extends Screen {
     public ButtonWidget doneButtonWidget;
 
     public ACFMenuScreen() {
-        super(Text.literal("123"));
+        super(Text.literal("AutoClicker Settings"));
     }
 
     @Override
@@ -108,8 +110,16 @@ public class ACFMenuScreen extends Screen {
             lCooldownAttackModeButtonWidget.setMessage(Text.translatable("autoclicker-rinf.attackcooldownmode", ClickController.lCooldownAttackMode));
         }).dimensions(10, 102, 130, 20).build();
 
-
         doneButtonWidget = ButtonWidget.builder(Text.translatable("gui.done"), button -> this.close() ).dimensions(10, height - 30, 50, 20).build();
+
+
+        if (AutoclickerRinfClient.isME && !MinecraftClient.getInstance().isIntegratedServerRunning()) {
+            lTargetEntityModeButtonWidget.active = false;
+            rTargetEntityModeButtonWidget.active = false;
+
+            ClickController.lTargetEntityMode = false;
+            ClickController.rTargetEntityMode = false;
+        }
 
 
         addDrawableChild(lTitleTextWidget);

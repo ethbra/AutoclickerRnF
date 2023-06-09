@@ -13,6 +13,7 @@ import rinf.autoclickerrinf.client.gui.ACFMenuScreen;
 
 @Environment(EnvType.CLIENT)
 public class AutoclickerRinfClient implements ClientModInitializer {
+    public static boolean isME = false;
     public static Config config = new Config();
     public static ACFHud acfHud;
     @Override
