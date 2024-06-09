@@ -1,0 +1,12 @@
+{
+  "category.rinf-mods.general": "RinF Mod-Einstellungen",
+  "autoclicker-rinf.leftmousebutton": "Linke Maustaste",
+  "autoclicker-rinf.rightmousebutton": "Rechte Maustaste",
+  "key.autoclicker-rinf.openacfm": "Autoklicker-Menü öffnen",
+  "key.autoclicker-rinf.toggleacf": "Autoklicker umschalten",
+  "autoclicker-rinf.clickdelay": "Verzögerung in Ticks: %d",
+  "autoclicker-rinf.settingmenul": "Einstellungen",
+  "autoclicker-rinf.targetentitymode": "Ziel-Entität-Modus: %d",
+  "autoclicker-rinf.attackcooldownmode": "Cooldown-Angriffsmodus: %d",
+  "autoclicker-rinf.holdmode": "Halten-Modus: %d"
+}

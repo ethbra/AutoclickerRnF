@@ -5,7 +5,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.CheckboxWidget;
+import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 import rinf.autoclickerrinf.client.AutoclickerRinfClient;
 import rinf.autoclickerrinf.client.ClickController;
@@ -43,8 +45,15 @@ public class ACFMenuScreen extends Screen {
         rTitleTextWidget = new TextWidget(148, 7, 110, 20, Text.translatable("autoclicker-rinf.rightmousebutton"), textRenderer);
         rTitleTextWidget.setTextColor(0xffff00);
 
-        lActiveCheckboxWidget = new CheckboxWidget(118, 6, 20, 20, Text.empty(), ClickController.lClickerActive);
-        rActiveCheckboxWidget = new CheckboxWidget(258, 6, 20, 20, Text.empty(), ClickController.rClickerActive);
+        lActiveCheckboxWidget = CheckboxWidget.builder(Text.empty(), textRenderer)
+                .pos(118, 6)
+                .checked(ClickController.lClickerActive)
+                .build();
+
+        rActiveCheckboxWidget = CheckboxWidget.builder(Text.empty(), textRenderer)
+                .pos(258, 6)
+                .checked(ClickController.rClickerActive)
+                .build();
 
         lClickDelayTextFieldWidget = new ClickDelayTextFieldWidget(textRenderer, 10, 30, 110, 20, Text.literal("0"));
         lClickDelayTextFieldWidget.visible = false;
@@ -52,7 +61,8 @@ public class ACFMenuScreen extends Screen {
         rClickDelayTextFieldWidget.visible = false;
 
         lClickDelaySaveButtonWidget = ButtonWidget.builder(Text.literal("OK"), button -> {
-            if (!lClickDelayTextFieldWidget.getText().equals("")) ClickController.lClickDelayInt = convertStringToInt(lClickDelayTextFieldWidget.getText());
+            if (!lClickDelayTextFieldWidget.getText().isEmpty())
+                ClickController.lClickDelayInt = convertStringToInt(lClickDelayTextFieldWidget.getText());
             lClickDelayButtonWidget.setMessage(Text.translatable("autoclicker-rinf.clickdelay", ClickController.lClickDelayInt));
             lClickDelayTextFieldWidget.setText("");
 
@@ -63,7 +73,8 @@ public class ACFMenuScreen extends Screen {
         }).dimensions(120, 30, 20, 20).build();
         lClickDelaySaveButtonWidget.visible = false;
         rClickDelaySaveButtonWidget = ButtonWidget.builder(Text.literal("OK"), button -> {
-            if (!rClickDelayTextFieldWidget.getText().equals("")) ClickController.rClickDelayInt = convertStringToInt(rClickDelayTextFieldWidget.getText());
+            if (!rClickDelayTextFieldWidget.getText().isEmpty())
+                ClickController.rClickDelayInt = convertStringToInt(rClickDelayTextFieldWidget.getText());
             rClickDelayButtonWidget.setMessage(Text.translatable("autoclicker-rinf.clickdelay", ClickController.rClickDelayInt));
             rClickDelayTextFieldWidget.setText("");
 
@@ -110,7 +121,7 @@ public class ACFMenuScreen extends Screen {
             lCooldownAttackModeButtonWidget.setMessage(Text.translatable("autoclicker-rinf.attackcooldownmode", ClickController.lCooldownAttackMode));
         }).dimensions(10, 102, 130, 20).build();
 
-        doneButtonWidget = ButtonWidget.builder(Text.translatable("gui.done"), button -> this.close() ).dimensions(10, height - 30, 50, 20).build();
+        doneButtonWidget = ButtonWidget.builder(Text.translatable("gui.done"), button -> this.close()).dimensions(10, height - 30, 50, 20).build();
 
 
         if (AutoclickerRinfClient.isME && !MinecraftClient.getInstance().isIntegratedServerRunning()) {
@@ -144,7 +155,7 @@ public class ACFMenuScreen extends Screen {
 
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
-        this.renderBackground(drawContext);
+        this.renderBackground(drawContext, mouseX, mouseY, delta);
         super.render(drawContext, mouseX, mouseY, delta);
     }
 
@@ -160,8 +171,7 @@ public class ACFMenuScreen extends Screen {
         int value = 0;
         try {
             value = Integer.parseInt(str);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Convert String To Int Exception: " + e);
         }
         return value;

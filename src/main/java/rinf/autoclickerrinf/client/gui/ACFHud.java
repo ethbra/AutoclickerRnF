@@ -27,16 +27,23 @@ public class ACFHud {
         this.tickDelta = tickDelta;
 
         Window window = MinecraftClient.getInstance().getWindow();
-        int hudWight = window.getScaledWidth();
-        int hudHeight = window.getScaledHeight();
+        int x = window.getScaledWidth() / 2;
+        int y = window.getScaledHeight() - 54;
 
-        jobIndicator = new IconWidget((hudWight / 2) - 8, hudHeight - 54, 16, 16, Identifier.of("minecraft", "textures/item/barrier.png"));
-        if (ClickController.lClickerActive) lIndicator = new IconWidget((hudWight / 2) - 14, hudHeight - 54, 4, 4, Identifier.of("minecraft", "textures/block/white_shulker_box.png"));
-        else lIndicator = new IconWidget((hudWight / 2) - 14, hudHeight - 54, 4, 4, Identifier.of("minecraft", "textures/block/gray_shulker_box.png"));
-        if (ClickController.rClickerActive) rIndicator = new IconWidget((hudWight / 2) + 10, hudHeight - 54, 4, 4, Identifier.of("minecraft", "textures/block/white_shulker_box.png"));
-        else rIndicator = new IconWidget((hudWight / 2) + 10, hudHeight - 54, 4, 4, Identifier.of("minecraft", "textures/block/gray_shulker_box.png"));
+        jobIndicator = IconWidget.create(16, 16,
+                Identifier.of("minecraft", "textures/item/barrier.png"), 16, 16);
+        lIndicator = IconWidget.create(4, 4,
+                Identifier.of("minecraft",
+                        ClickController.lClickerActive ? "textures/block/white_shulker_box.png" : "textures/block/gray_shulker_box.png"),
+                16, 16);
+        rIndicator = IconWidget.create(4, 4,
+                Identifier.of("minecraft",
+                        ClickController.rClickerActive ? "textures/block/white_shulker_box.png" : "textures/block/gray_shulker_box.png"),
+                16, 16);
 
-
+        jobIndicator.setPosition(x - 8, y);
+        lIndicator.setPosition(x - 14, y);
+        rIndicator.setPosition(x + 10, y);
         drawables.add(jobIndicator);
         drawables.add(lIndicator);
         drawables.add(rIndicator);
